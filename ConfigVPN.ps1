@@ -23,13 +23,13 @@ if ((Test-Admin) -eq $false)  {
 if ($OSVersion -eq ((New-object 'Version' 5,1) -or (New-object 'Version' 5,2))) {
     Write-Output "Detected $OSName.";
     Write-Output "Enabling NAT-T for L2TP/IPSEC...";
-    Set-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Services\IPSec" -Name "AssumeUDPEncapsulationContextOnSendRule" -Type DWORD -Value 2 –Force;
+    Set-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Services\IPSec" -Name "AssumeUDPEncapsulationContextOnSendRule" -Type DWORD -Value 2 -Force;
     Write-Output "Registry key and value written.";
 }
 elseif ($OSVersion -ge (New-Object 'Version' 6,0))  {
     Write-Output "Detected $OSName.";
     Write-Output "Enabling NAT-T for L2TP/IPSEC...";
-    Set-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Services\PolicyAgent" -Name "AssumeUDPEncapsulationContextOnSendRule" -Type DWORD -Value 2 –Force;
+    Set-ItemProperty -Path "HKLM:SYSTEM\CurrentControlSet\Services\PolicyAgent" -Name "AssumeUDPEncapsulationContextOnSendRule" -Type DWORD -Value 2 -Force;
     Write-Output "Registry key and value written.";
 } else {
     Write-Output "Not supported operating system detected: $OSName.";
